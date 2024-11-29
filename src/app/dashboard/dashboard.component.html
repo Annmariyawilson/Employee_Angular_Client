@@ -1,0 +1,29 @@
+<div class="row w-100" style="height: 90vh;">
+    <div class="col-2">
+        <app-sidebar></app-sidebar>  
+    </div>
+    <div class="col-10 row p-0">
+        <div class="col-8 m-0 p-0">
+            <div class="border h-25 banner d-flex justify-content-center align-items-center">
+                <h1 class="text-light">Admin Dashboard</h1>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <app-calender></app-calender>
+                </div>
+                <div class="col">
+                    <app-chart></app-chart>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="h-75 border shadow">
+                <app-admin></app-admin>
+            </div>
+            <div class="banner d-flex justify-content-center align-items-center" style="height: 20%;">
+                <h5 class="text-light">Employee Count : <span class="fw-border">{{empCount}}</span></h5>
+            </div>
+        </div>
+    </div>
+    
+</div>

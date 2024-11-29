@@ -1,0 +1,67 @@
+<div class="row w-100" style="height: 90vh;">
+    <div class="col-2">
+        <app-sidebar></app-sidebar>  
+    </div>
+    <div class="col-10 p-2">
+<div class="d-flex justify-content-between">
+        <h2>Employee List</h2>
+        <button class="btn btn-danger" (click)="generatePdf()">Export as PDF</button>
+    </div>
+    <p>{{dt|date:'dd/mm/yyyy'}}</p>
+    <p></p>
+        <div class="my-4 p-3 d-flex justify-content-between">
+            <div class="d-flex">
+            <a routerLink="/empmng/addemp" class="btn btn-success">Add Employee+</a>
+            <div class="dropdown ms-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Sort
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" (click)="sortById()" >Sort By Id</a></li>
+                  <li><a class="dropdown-item" (click)="sortByName()" >Sort By Name</a></li>
+                </ul>
+              </div>
+            </div>
+<div class="w-50">
+    <input type="" [(ngModel)]="searchKey" name="key"  class="form-control" placeholder="Search By Name">
+</div>
+        </div>
+
+<table class="mt-5 table table-dark" *ngIf="employees.length>0" >
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PHONE</th>
+            <th>DPT</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of employees|search:searchKey|paginate: { itemsPerPage: 4, currentPage: p }">
+            <td>{{i.id}}</td>
+            <td>{{i.name|uppercase}}</td>
+            <td>{{i.phone}}</td>
+            <td>{{i.department}}</td>
+            <td>
+                <a routerLink="/empmng/editemp/{{i.id}}" class="btn">
+                    <i class="fa-solid fa-pen-to-square" style="color: #FFD43B;"></i>
+                </a>
+                <button class="btn ms-3" (click)="handleDelete(i.id)">
+                    <i class="fa-solid fa-trash" style="color: #f40606;"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <tr *ngIf="(employees|search:searchKey).length==0">
+        <p class="fa-bold text-danger">No Employees Found!!</p>
+    </tr>
+</table>
+<div class="text-center mt-3" *ngIf="employees.length > 0">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+<h2 *ngIf="employees.length<=0">No Employees Added Yet!!</h2>
+    </div>
+    
+</div>

@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-center align-items-center">
+    <button class="btn btn-link text-dark" *ngIf="!status" (click)="editButton()" style="text-decoration: none;">Update Profile</button>
+    <form *ngIf="status">
+        <label for="11">
+            <input type="file" (change)="getFile($event)" id="11" style="display: none;">
+            <img [src]="profilePicture" alt="" class="mx-auto" >
+        </label>
+        <input type="text" [(ngModel)]="adminData.email" placeholder="Enter Email" name="em"  class="my-4 form-control">
+        <input type="text" [(ngModel)]="adminData.password" placeholder="Enter Password" name="ps" class="my-4 form-control">
+        <div class="d-flex w-100 justify-content-between">
+            <button class="btn btn-success" (click)="handleUpdate()">Update</button>
+            <button class="btn btn-danger" (click)="cancelButton()">Cancel</button>
+        </div>
+    </form>
+</div>
